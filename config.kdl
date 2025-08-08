@@ -6,6 +6,13 @@
 // Input device configuration.
 // Find the full list of options on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Input
+
+// DEFINING NAMED WORKSPACES
+workspace "browser"
+workspace "steam"
+workspace "coding"
+workspace "audio"
+
 input {
     keyboard {
         xkb {
@@ -330,6 +337,11 @@ window-rule {
     clip-to-geometry true
 }
 
+window-rule {
+    match app-id="steam"
+    open-on-workspace "steam"
+}
+
 binds {
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
     // in the end. To find an XKB name for a particular key, you may use a program
@@ -434,7 +446,7 @@ binds {
     Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
     Mod+Ctrl+U         { move-column-to-workspace-down; }
     Mod+Ctrl+I         { move-column-to-workspace-up; }
-
+    
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
     // ...
@@ -443,6 +455,10 @@ binds {
     Mod+Shift+Page_Up   { move-workspace-up; }
     Mod+Shift+U         { move-workspace-down; }
     Mod+Shift+I         { move-workspace-up; }
+    
+    //TODO: DELETE
+    Mod+Ctrl+P { spawn "kill" "waybar"; }
+    Mod+P { spawn "waybar"; }
 
     // You can bind mouse wheel scroll ticks using the following syntax.
     // These binds will change direction based on the natural-scroll setting.
