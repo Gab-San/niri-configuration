@@ -1,4 +1,4 @@
-// This config is in the KDL format: https://kdl.dev
+// This config is in the KDL format:://kdl.dev
 // "/-" comments out the following node.
 // Check the wiki for a full description of the configuration:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
@@ -10,8 +10,10 @@
 // DEFINING NAMED WORKSPACES
 workspace "browser"
 workspace "steam"
-workspace "coding"
+workspace "code"
 workspace "audio"
+workspace "discord"
+workspace "obs"
 
 input {
     keyboard {
@@ -258,6 +260,11 @@ layout {
     }
 }
 
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
+
 // Add lines like this to spawn processes at startup.
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
@@ -266,8 +273,17 @@ layout {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
-spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" "timeout" "600" "swaylock -f" "before-sleep" "swaylock -f"
+spawn-at-startup "xwayland-satellite"
+
+// Backgrounds
+
+spawn-at-startup "swww-daemon"
+spawn-at-startup "sh" "-c" "swaybg -i ~/Immagini/bckdrop-programmers-room-blurred.jpg"
+
+environment {
+    DISPLAY ":0"
+}
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -338,8 +354,34 @@ window-rule {
 }
 
 window-rule {
+    match app-id="telegram"
+    open-on-workspace "browser"
+}
+
+window-rule {
     match app-id="steam"
+    match app-id="gamescope"
+
     open-on-workspace "steam"
+}
+
+window-rule {
+    match app-id="discord"
+    open-on-workspace "discord"
+}
+
+window-rule {
+    match app-id="easyeffects"
+    match app-id="qpwgraph"
+    match app-id="pwvucontrol"
+    //Add spotify
+
+    open-on-workspace "audio"
+}
+
+window-rule {
+    match app-id="obs"
+    open-on-workspace "obs"
 }
 
 binds {
@@ -604,8 +646,4 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
-}
-
-environment {
-	DISPLAY ":0"
 }
