@@ -9,11 +9,11 @@
 
 // DEFINING NAMED WORKSPACES
 workspace "browser"
-workspace "steam"
 workspace "code"
+workspace "steam"
 workspace "audio"
 workspace "discord"
-workspace "obs"
+workspace "video"
 
 input {
     keyboard {
@@ -381,7 +381,7 @@ window-rule {
 
 window-rule {
     match app-id="obs"
-    open-on-workspace "obs"
+    open-on-workspace "video"
 }
 
 binds {
@@ -416,6 +416,9 @@ binds {
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
     XF86MonBrightnessDown { spawn "brightnessctl" "set" "2%-"; }
     XF86MonBrightnessUp { spawn "brightnessctl" "set" "+2%"; }
+    XF86AudioPlay { spawn "playerctl" "play-pause"; }
+    XF86AudioNext { spawn "playerctl" "next"; }
+    XF86AudioPrev { spawn "playerctl" "previous"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
