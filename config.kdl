@@ -5,7 +5,7 @@
 
 // Envirnoment Setup
 // This section provides a useful configuration for applications that
-// need a certain environment to work properly
+// need a certain environment variables to work properly
 
 environment {
     DISPLAY ":0"
@@ -13,7 +13,6 @@ environment {
 }
 
 // Input setup
-
 input {
     keyboard {
         xkb {
@@ -58,6 +57,10 @@ input {
         // scroll-button 273
         // middle-emulation
     }
+}
+
+switch-events {
+    lid-close { spawn "playerctl" "play-pause"; }
 }
 
 // Defining named workspaces
