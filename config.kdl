@@ -105,17 +105,6 @@ layout {
     // If you leave the brackets empty, the windows themselves will decide their initial width.
     // default-column-width {}
 
-    // By default focus ring and border are rendered as a solid background rectangle
-    // behind windows. That is, they will show up through semitransparent windows.
-    // This is because windows using client-side decorations can have an arbitrary shape.
-    //
-    // If you don't like that, you should uncomment `prefer-no-csd` below.
-    // Niri will draw focus ring and border *around* windows that agree to omit their
-    // client-side decorations.
-    //
-    // Alternatively, you can override it with a window rule called
-    // `draw-border-with-background`.
-
     // You can change how the focus ring looks.
     focus-ring {
         // Uncomment this line to disable the focus ring.
@@ -222,6 +211,8 @@ layer-rule {
     match namespace="^wallpaper$"
     place-within-backdrop true
 }
+
+prefer-no-csd
 
 // Add lines like this to spawn processes at startup.
 // Note that running niri as a session supports xdg-desktop-autostart,
@@ -334,6 +325,12 @@ window-rule {
 window-rule {
     match app-id="obs"
     open-on-workspace "video"
+}
+
+gestures {
+    hot-corners {
+        off
+    }
 }
 
 binds {
