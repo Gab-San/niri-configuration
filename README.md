@@ -57,3 +57,6 @@ I'm planning of binding the function keys based off of the laptop's ones, so it 
 
 My layout is minimal, nothing fancy cause I don't want many distractions. Due to this, I have also turned off most of the animation this amazing window manager offers.
 
+---
+
+The background picture is a steam wallpaper bought with steam points
