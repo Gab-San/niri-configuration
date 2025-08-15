@@ -71,8 +71,8 @@ workspace "browser"
 workspace "code"
 workspace "steam"
 workspace "audio"
-workspace "chat"
 workspace "video"
+workspace "chat"
 
 // Settings that influence how windows are positioned and sized.
 // Find more information on the wiki:
@@ -468,13 +468,13 @@ binds {
     
     // Music control modifiers;
 
-    Mod+KP_Right allow-when-locked=true { spawn "playerctl" "next"; }
+    Mod+KP_Right allow-when-locked=true hotkey-overlay-title=null { spawn "playerctl" "next"; }
     Mod+KP_6 allow-when-locked=true { spawn "playerctl" "next"; }
     
-    Mod+KP_Left allow-when-locked=true { spawn "playerctl" "previous"; }
+    Mod+KP_Left allow-when-locked=true hotkey-overlay-title=null { spawn "playerctl" "previous"; }
     Mod+KP_4 allow-when-locked=true { spawn "playerctl" "previous"; }
 
-    Mod+KP_Begin allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    Mod+KP_Begin allow-when-locked=true hotkey-overlay-title=null { spawn "playerctl" "play-pause"; }
     Mod+KP_5 allow-when-locked=true { spawn "playerctl" "play-pause"; }
 
 
