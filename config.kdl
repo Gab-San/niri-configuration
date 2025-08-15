@@ -147,10 +147,7 @@ layout {
     }
 }
 
-layer-rule {
-    match namespace="^wallpaper$"
-    place-within-backdrop true
-}
+
 
 
 // Add lines like this to spawn processes at startup.
@@ -255,6 +252,23 @@ window-rule {
     match app-id="obs"
 }
 
+// Layer rules let you adjust behaviour for individual layers
+
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
+
+layer-rule {
+    match namespace="^notifications$"
+    block-out-from "screencast"
+}
+
+layer-rule {
+    match namespace="^notifications$"
+    block-out-from "screen-capture"
+}
+
 gestures {
     hot-corners {
         off
@@ -295,7 +309,7 @@ binds {
     // or do a four-finger swipe up on a touchpad.
     Mod+O repeat=false { toggle-overview; }
 
-    Mod+Q hotkey-overlay-title=null cooldown-ms=400 { close-window; }
+    Mod+Q hotkey-overlay-title=null cooldown-ms=200 { close-window; }
     
     // Moving between windows
     Mod+H     { focus-column-left; }
@@ -465,8 +479,8 @@ binds {
 
 
     // The allow-when-locked=true property makes them work even when the session is locked.
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
     XF86AudioMute        allow-when-locked=true cooldown-ms=300 { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
     XF86AudioPlay allow-when-locked=true { spawn "notify-send" "Configurami!"; }
@@ -476,7 +490,12 @@ binds {
     XF86MonBrightnessUp { spawn "brightnessctl" "set" "+2%"; }
 }
 
-/-debug {
-    preview-render "screencast"
-    // preview-render "screen-capture"
+animations {
+    window-open {
+        off
+    }
+
+    window-close {
+        off
+    }
 }
