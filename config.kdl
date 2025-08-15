@@ -59,6 +59,8 @@ input {
         // scroll-button 273
         // middle-emulation
     }
+
+    focus-follows-mouse
 }
 
 switch-events {
@@ -156,14 +158,9 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" "timeout" "600" "swaylock -f" "before-sleep" "swaylock -f"
 spawn-at-startup "xwayland-satellite"
-spawn-at-startup "wlsunset -l 51.3 -L 22.2"
-
-// Backgrounds
-
 spawn-at-startup "swww-daemon"
-spawn-at-startup "sh" "-c" "swaybg -i ~/Immagini/bckdrop-programmers-room-blurred.jpg"
+spawn-at-startup "sh" "-c" "swaybg ~/Immagini/bckdrop-programmers-room-blurred.jpg"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.

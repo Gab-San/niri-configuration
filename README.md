@@ -30,10 +30,14 @@ Here are some custom binds that I have added on top of the base ones:
 | binds | action | 
 | ----- | ------ |
 | Mod+Shift+Alt+Q | Shuts down the computer |
-| Mod+KP_Right/6 | Plays next song on whichever music player |
-| Mod+KP_Left/4 | Plays previous song on whichever music player |
+| Mod+KP_Right/6 | Plays next song on whichever music player[^1] |
+| Mod+KP_Left/4 | Plays previous song on whichever music player[^1] |
+| Mod+KP_Begin/5 | Plays/Stops current song on whichever music player[^1] |
 
 I'm still getting used to environment, but probably bindings will change soon some more.
+
+
+[^1]: Uses the `playerctl` utility.
 
 ## Miscellaneous
 
@@ -44,7 +48,9 @@ Also to get more control over the whole configuration I didn't rely too much on 
 
 I'm currently still in the process of thinking if and which function keys to bind.
 On top of my laptop keyboard I use a Razer Chroma, therefore function keys differ from each other.
+
 Since there is still no way to bind keys based on the input I have listed all function keys one under the other at the end of the binds section. 
+
 I'm planning of binding the function keys based off of the laptop's ones, so it may be that some function keys will do something completely different from what they were planned to.
 
 ## Layout and Animations
