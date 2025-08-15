@@ -71,7 +71,7 @@ workspace "browser"
 workspace "code"
 workspace "steam"
 workspace "audio"
-workspace "discord"
+workspace "chat"
 workspace "video"
 
 // Settings that influence how windows are positioned and sized.
@@ -161,6 +161,7 @@ layer-rule {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" "timeout" "600" "swaylock -f" "before-sleep" "swaylock -f"
 spawn-at-startup "xwayland-satellite"
+spawn-at-startup "wlsunset -l 51.3 -L 22.2"
 
 // Backgrounds
 
@@ -198,34 +199,32 @@ window-rule {
 // Window rules for opening applications
 
 window-rule {
-    match app-id="telegram"
-    open-on-workspace "browser"
-}
+    open-on-workspace "steam"
 
-window-rule {
     match app-id="steam"
     match app-id="gamescope"
-
-    open-on-workspace "steam"
 }
 
 window-rule {
+    open-on-workspace "chat"
+
     match app-id="discord"
-    open-on-workspace "discord"
+    match app-id="telegram"
 }
 
 window-rule {
+    open-on-workspace "audio"
+
     match app-id="easyeffects"
     match app-id="qpwgraph"
     match app-id="pwvucontrol"
-    //Add spotify
-
-    open-on-workspace "audio"
+    match app-id="Spotify" 
 }
 
 window-rule {
-    match app-id="obs"
     open-on-workspace "video"
+
+    match app-id="obs"
 }
 
 gestures {
@@ -423,15 +422,28 @@ binds {
     Ctrl+Alt+Delete { quit; }
     
     Mod+Alt+Q hotkey-overlay-title="Shutdown" { spawn "shutdown" "now"; }
+    
+    
+    // Music control modifiers;
+
+    Mod+KP_Right allow-when-locked=true { spawn "playerctl" "next"; }
+    Mod+KP_6 allow-when-locked=true { spawn "playerctl" "next"; }
+    
+    Mod+KP_Left allow-when-locked=true { spawn "playerctl" "previous"; }
+    Mod+KP_4 allow-when-locked=true { spawn "playerctl" "previous"; }
+
+    Mod+KP_Begin allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    Mod+KP_5 allow-when-locked=true { spawn "playerctl" "play-pause"; }
+
 
     // The allow-when-locked=true property makes them work even when the session is locked.
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
     XF86AudioMute        allow-when-locked=true cooldown-ms=300 { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
-    XF86AudioPlay allow-when-locked=true { spawn "playerctl" "play-pause"; }
-    XF86AudioNext allow-when-locked=true { spawn "playerctl" "next"; }
-    XF86AudioPrev allow-when-locked=true { spawn "playerctl" "previous"; }
+    XF86AudioPlay allow-when-locked=true { spawn "notify-send" "Configurami!"; }
+    XF86AudioNext allow-when-locked=true { spawn "notify-send" "Configurami!"; }
+    XF86AudioPrev allow-when-locked=true { spawn "notify-send" "Configurami!"; }
     XF86MonBrightnessDown { spawn "brightnessctl" "set" "2%-"; }
     XF86MonBrightnessUp { spawn "brightnessctl" "set" "+2%"; }
 }
